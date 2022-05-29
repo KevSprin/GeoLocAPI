@@ -1,0 +1,21 @@
+version: '3.4'
+
+services:
+  geolocapi:
+    image: ${DOCKER_REGISTRY-}geolocapi
+    build:
+      context: .
+      dockerfile: GeoLocAPI/Dockerfile
+    links:
+      - "db:database" 
+    depends_on:
+      - db
+  db:
+    image: "mcr.microsoft.com/mssql/server"
+    environment:
+        SA_PASSWORD: "BigPassw0rd"
+        ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+    volumes:  
+      - ./data/mssql:/var/opt/mssql3

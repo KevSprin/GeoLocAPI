@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32328.378
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeoLocAPI", "GeoLocAPI\GeoLocAPI.csproj", "{D7A44E8C-1CEB-4659-8B5A-3A4308394C4A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeoLocAPI_BAL", "GeoLocAPI_BAL\GeoLocAPI_BAL.csproj", "{76C694BC-71B6-4D73-A08D-C2E113D6FD4C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeoLocAPI_DAL", "GeoLocAPI_DAL\GeoLocAPI_DAL.csproj", "{FFCEC036-9668-4AB1-9FF3-2D35A094EDD0}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{EAC1A271-BDE9-4AE6-AB3F-ADA45AE9E51F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeoLocAPI_Domain", "..\GeoLocAPI_Domain\GeoLocAPI_Domain.csproj", "{BF1A631E-0945-4E4C-BA49-500BA816FEAE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeoLocAPI_BAL.Tests", "..\GeoLocAPI_BAL.Tests\GeoLocAPI_BAL.Tests.csproj", "{2F423248-FB62-442E-8F2C-E5C87EFF65F9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeoLocAPI.Tests", "..\GeoLocAPI.Tests\GeoLocAPI.Tests.csproj", "{6D3C5A53-202B-4D76-828F-66676BFCEEAF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D7A44E8C-1CEB-4659-8B5A-3A4308394C4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7A44E8C-1CEB-4659-8B5A-3A4308394C4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7A44E8C-1CEB-4659-8B5A-3A4308394C4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7A44E8C-1CEB-4659-8B5A-3A4308394C4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76C694BC-71B6-4D73-A08D-C2E113D6FD4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76C694BC-71B6-4D73-A08D-C2E113D6FD4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76C694BC-71B6-4D73-A08D-C2E113D6FD4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76C694BC-71B6-4D73-A08D-C2E113D6FD4C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFCEC036-9668-4AB1-9FF3-2D35A094EDD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFCEC036-9668-4AB1-9FF3-2D35A094EDD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFCEC036-9668-4AB1-9FF3-2D35A094EDD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFCEC036-9668-4AB1-9FF3-2D35A094EDD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EAC1A271-BDE9-4AE6-AB3F-ADA45AE9E51F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAC1A271-BDE9-4AE6-AB3F-ADA45AE9E51F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EAC1A271-BDE9-4AE6-AB3F-ADA45AE9E51F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EAC1A271-BDE9-4AE6-AB3F-ADA45AE9E51F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF1A631E-0945-4E4C-BA49-500BA816FEAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF1A631E-0945-4E4C-BA49-500BA816FEAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF1A631E-0945-4E4C-BA49-500BA816FEAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF1A631E-0945-4E4C-BA49-500BA816FEAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F423248-FB62-442E-8F2C-E5C87EFF65F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F423248-FB62-442E-8F2C-E5C87EFF65F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F423248-FB62-442E-8F2C-E5C87EFF65F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F423248-FB62-442E-8F2C-E5C87EFF65F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D3C5A53-202B-4D76-828F-66676BFCEEAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D3C5A53-202B-4D76-828F-66676BFCEEAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D3C5A53-202B-4D76-828F-66676BFCEEAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D3C5A53-202B-4D76-828F-66676BFCEEAF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4D14182D-435F-49DD-B796-642EF96BAA12}
+	EndGlobalSection
+EndGlobal
