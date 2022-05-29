@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\GeoLocAPI_Domain\GeoLocAPI_Domain.csproj" />
+    <ProjectReference Include="..\GeoLocAPI_Domain\GeoLocAPI_Domain.csproj" />
   </ItemGroup>
 
 </Project>

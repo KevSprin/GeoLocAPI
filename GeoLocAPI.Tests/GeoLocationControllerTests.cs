@@ -18,7 +18,7 @@ namespace GeoLocAPI.Tests
         }
 
         [Test]
-        public async void ShouldReturnOkResult()
+        public async Task ShouldReturnOkResult()
         {
             var hostAddress = new HostAddress() { Value = "127.0.0.1" };
             var mockRepo = new Mock<IGeoLocationService>();
