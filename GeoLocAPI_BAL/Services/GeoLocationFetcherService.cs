@@ -16,16 +16,17 @@ namespace GeoLocAPI_BAL.Services
             _configuration = configuration;
         }
 
-        public async Task<GeoLocationDataDto> GetGeoLocationData(HostAddress hostAddress)
+        public async Task<GeoLocationData> GetGeoLocationData(GeoLocationDataDto geoLocationDataDto)
         {
-            var geoLocationDataDto = await _configuration["ApiUrl"].AppendPathSegment(hostAddress.Value)
+            var geoLocationData = await _configuration["ApiUrl"].AppendPathSegment(geoLocationDataDto.HostAddress)
                 .SetQueryParam("access_key", _configuration["ApiKey"])
-                .GetJsonAsync<GeoLocationDataDto>();
-            if (geoLocationDataDto.HostAddress == null)
+                .GetJsonAsync<GeoLocationData>();
+            if (geoLocationData.HostAddress == null)
             {
                 throw new Exception("Couldn't find geolocation data. Check if the address you provided is valid!");
             }
-            return geoLocationDataDto;
+            geoLocationData.HostAddress = geoLocationDataDto.HostAddress;
+            return geoLocationData;
         }
     }
 }

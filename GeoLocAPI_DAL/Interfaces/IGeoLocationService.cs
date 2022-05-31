@@ -5,11 +5,11 @@ namespace GeoLocAPI_DAL.Interfaces
 {
     public interface IGeoLocationService
     {
-        Task Create(HostAddress hostAddress);
+        Task Create(GeoLocationDataDto geoLocationDataDto);
 
         Task CreateOwnGeoLocation(GeoLocationDataDto geoLocationDataDto);
 
-        Task Delete(string geoLocationDataDto);
+        Task Delete(string hostAddress);
 
         Task DeleteById(int id);
 

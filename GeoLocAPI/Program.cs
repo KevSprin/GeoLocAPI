@@ -1,3 +1,4 @@
+using GeoLocAPI.Swagger;
 using GeoLocAPI_BAL.Services;
 using GeoLocAPI_DAL.DataContext;
 using GeoLocAPI_DAL.Interfaces;
@@ -60,6 +61,7 @@ builder.Services.AddSwaggerGen(option =>
             new string[]{}
         }
     });
+    option.SchemaFilter<GeoLocationDataSchemaFilter>();
 });
 
 builder.Services.AddScoped<IAuthenticationRepository, AuthenticationRepository>();

@@ -5,6 +5,6 @@ namespace GeoLocAPI_DAL.Interfaces
 {
     public interface IGeoLocationFetcherService
     {
-        Task<GeoLocationDataDto> GetGeoLocationData(HostAddress hostAddress);
+        Task<GeoLocationData> GetGeoLocationData(GeoLocationDataDto geoLocationDataDto);
     }
 }

@@ -1,14 +1,13 @@
 ﻿using GeoLocAPI_DAL.Interfaces;
 using GeoLocAPI_Domain.DTOs;
-using GeoLocAPI_Domain.Models;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace GeoLocAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class GeoLocationController : Controller
     {
         private readonly IGeoLocationService _geoLocationService;
@@ -19,15 +18,15 @@ namespace GeoLocAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddGeoLocation([FromBody] HostAddress hostAddress)
+        public async Task<IActionResult> AddGeoLocation([FromBody] GeoLocationDataDto geoLocationDataDto)
         {
             try
             {
-                await _geoLocationService.Create(hostAddress);
+                await _geoLocationService.Create(geoLocationDataDto);
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
             }
             return Ok();
         }
@@ -42,7 +41,7 @@ namespace GeoLocAPI.Controllers
             }
             catch(Exception ex)
             {
-                return BadRequest(ex.Message);
+                return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
             }
             return Ok(result);
         }
@@ -57,7 +56,7 @@ namespace GeoLocAPI.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
             }
             return Ok(result);
         }
@@ -71,7 +70,7 @@ namespace GeoLocAPI.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
             }
             return Ok();
         }
@@ -85,7 +84,7 @@ namespace GeoLocAPI.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
             }
             return Ok();
         }

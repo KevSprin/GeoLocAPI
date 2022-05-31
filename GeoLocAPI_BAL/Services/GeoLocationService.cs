@@ -18,12 +18,12 @@ namespace GeoLocAPI_BAL.Services
             _mapper = mapper;
         }
 
-        public async Task Create(HostAddress hostAddress)
+        public async Task Create(GeoLocationDataDto geoLocationDataDto)
         {
             try
             {
-                var filledGeoLocationData = await _client.GetGeoLocationData(hostAddress);
-                await _geoLocationRepository.Create(_mapper.Map<GeoLocationData>(filledGeoLocationData));
+                var filledGeoLocationData = await _client.GetGeoLocationData(geoLocationDataDto);
+                await _geoLocationRepository.Create(filledGeoLocationData);
             }
             catch
             {

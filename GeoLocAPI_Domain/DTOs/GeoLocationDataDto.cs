@@ -1,37 +1,44 @@
-﻿using Newtonsoft.Json;
+﻿using GeoLocAPI_Domain.Attributes;
+using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
 
 namespace GeoLocAPI_Domain.DTOs
 {
     public class GeoLocationDataDto
     {
-        [JsonProperty("ip")]
+        [IgnoreDataMember]
+        public int Id { get; set; }
+
+        [Required]
+        [HostAddress]
         public string? HostAddress { get; set; }
 
-        [JsonProperty("continent_code")]
-        internal string? ContinentCode { get; set; }
+        [IgnoreDataMember]
+        public string? ContinentCode { get; set; }
 
-        [JsonProperty("continent_name")]
-        internal string? ContinentName { get; set; }
+        [IgnoreDataMember]
+        public string? ContinentName { get; set; }
 
-        [JsonProperty("country_code")]
-        internal string? CountryCode { get; set; }
+        [IgnoreDataMember]
+        public string? CountryCode { get; set; }
 
-        [JsonProperty("country_name")]
-        internal string? CountryName { get; set; }
+        [IgnoreDataMember]
+        public string? CountryName { get; set; }
 
-        [JsonProperty("region_code")]
-        internal string? RegionCode { get; set; }
+        [IgnoreDataMember]
+        public string? RegionCode { get; set; }
 
-        [JsonProperty("region_name")]
-        internal string? RegionName { get; set; }
+        [IgnoreDataMember]
+        public string? RegionName { get; set; }
 
-        [JsonProperty("zip")]
-        internal string? Zip { get; set; }
+        [IgnoreDataMember]
+        public string? Zip { get; set; }
 
-        [JsonProperty("latitude")]
-        internal double? Latitude { get; set; }
+        [IgnoreDataMember]
+        public double? Latitude { get; set; }
 
-        [JsonProperty("longitude")]
-        internal double? Longitude { get; set; }
+        [IgnoreDataMember]
+        public double? Longitude { get; set; }
     }
 }
