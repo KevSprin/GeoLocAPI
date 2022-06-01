@@ -31,18 +31,6 @@ namespace GeoLocAPI_BAL.Services
             }
         }
 
-        public async Task CreateOwnGeoLocation(GeoLocationDataDto geoLocationDataDto)
-        {
-            try
-            {
-                await _geoLocationRepository.Create(_mapper.Map<GeoLocationData>(geoLocationDataDto));
-            }
-            catch
-            {
-                throw;
-            }
-        }
-
         public async Task Delete(string hostAddress)
         {
             try
@@ -80,6 +68,21 @@ namespace GeoLocAPI_BAL.Services
                 throw;
             }
             return foundGeoLocationDataDto;
+        }
+
+        public IQueryable<GeoLocationDataDto> GetAll()
+        {
+            IQueryable<GeoLocationDataDto> geoLocationDataDtos;
+            try
+            {
+                var geoLocationData = _geoLocationRepository.GetAll();
+                geoLocationDataDtos = geoLocationData.Select(x => _mapper.Map<GeoLocationDataDto>(x));
+            }
+            catch
+            {
+                throw;
+            }
+            return geoLocationDataDtos;
         }
 
         public GeoLocationDataDto GetById(int id)

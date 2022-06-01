@@ -1,5 +1,6 @@
 ﻿using GeoLocAPI_Domain.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace GeoLocAPI_DAL.DataContext
 {
@@ -7,7 +8,6 @@ namespace GeoLocAPI_DAL.DataContext
     {
         public GeoLocDbContext(DbContextOptions<GeoLocDbContext> options) : base(options)
         {
-
         }
 
         public DbSet<LoginModel>? LoginModels { get; set; }

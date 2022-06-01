@@ -12,6 +12,7 @@ services:
       - db
   db:
     image: "mcr.microsoft.com/mssql/server"
+    hostname: "sqlserver"
     environment:
         SA_PASSWORD: "BigPassw0rd"
         ACCEPT_EULA: "Y"
@@ -19,3 +20,5 @@ services:
       - "1433:1433"
     volumes:  
       - ./data/mssql:/var/opt/mssql3
+    expose:  
+      - 1433

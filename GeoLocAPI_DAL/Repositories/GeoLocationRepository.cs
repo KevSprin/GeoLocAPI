@@ -30,10 +30,18 @@ namespace GeoLocAPI_DAL.Repositories
         {
             try
             {
-                _context.GeoLocations?.Find(hostAddress);
-                await _context.SaveChangesAsync();
+                var foundGeoLocationData = _context.GeoLocations?.First(l => l.HostAddress == hostAddress);
+                if(foundGeoLocationData != null)
+                {
+                    _context.GeoLocations?.Remove(foundGeoLocationData);
+                    await _context.SaveChangesAsync();
+                }
             }
-            catch 
+            catch (InvalidOperationException)
+            {
+                throw new InvalidOperationException($"GeoLocation record with host address = '{hostAddress}' was not found!");
+            }
+            catch
             {
                 throw;
             }
@@ -43,12 +51,16 @@ namespace GeoLocAPI_DAL.Repositories
         {
             try
             {
-                var foundGeolocationData = _context.GeoLocations?.First(l => l.Id == id);
-                if (foundGeolocationData != null)
+                var foundGeoLocationData = _context.GeoLocations?.First(l => l.Id == id);
+                if (foundGeoLocationData != null)
                 {
-                    _context.GeoLocations?.Remove(foundGeolocationData);
+                    _context.GeoLocations?.Remove(foundGeoLocationData);
                     await _context.SaveChangesAsync();
-                }                    
+                }
+            }
+            catch (InvalidOperationException)
+            {
+                throw new InvalidOperationException($"GeoLocation record with id = '{id}' was not found!");
             }
             catch
             {
@@ -63,6 +75,24 @@ namespace GeoLocAPI_DAL.Repositories
             {
                 result = _context.GeoLocations?.First(g => g.HostAddress == hostAddress);
             }
+            catch (InvalidOperationException)
+            {
+                throw new InvalidOperationException($"GeoLocation record with host address = '{hostAddress}' was not found!");
+            }
+            catch
+            {
+                throw;
+            }
+            return result;
+        }
+
+        public IQueryable<GeoLocationData> GetAll()
+        {
+            IQueryable<GeoLocationData> result;
+            try
+            {
+                result = _context.Set<GeoLocationData>();
+            }
             catch
             {
                 throw;
@@ -76,6 +106,10 @@ namespace GeoLocAPI_DAL.Repositories
             try
             {
                 result = _context.GeoLocations?.First(l => l.Id == id);
+            }
+            catch (InvalidOperationException)
+            {
+                throw new InvalidOperationException($"GeoLocation record with id = '{id}' was not found!");
             }
             catch
             {

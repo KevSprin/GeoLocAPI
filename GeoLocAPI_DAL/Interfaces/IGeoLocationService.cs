@@ -7,8 +7,6 @@ namespace GeoLocAPI_DAL.Interfaces
     {
         Task Create(GeoLocationDataDto geoLocationDataDto);
 
-        Task CreateOwnGeoLocation(GeoLocationDataDto geoLocationDataDto);
-
         Task Delete(string hostAddress);
 
         Task DeleteById(int id);
@@ -16,5 +14,7 @@ namespace GeoLocAPI_DAL.Interfaces
         GeoLocationDataDto Get(string hostAddress);
 
         GeoLocationDataDto GetById(int id);
+
+        IQueryable<GeoLocationDataDto> GetAll();
     }
 }
