@@ -9,11 +9,11 @@ namespace GeoLocAPI_DAL.Interfaces
 
         Task Delete(string hostAddress);
 
-        Task DeleteById(int id);
+        Task DeleteById(Guid id);
 
         GeoLocationDataDto Get(string hostAddress);
 
-        GeoLocationDataDto GetById(int id);
+        GeoLocationDataDto GetById(Guid id);
 
         IQueryable<GeoLocationDataDto> GetAll();
     }

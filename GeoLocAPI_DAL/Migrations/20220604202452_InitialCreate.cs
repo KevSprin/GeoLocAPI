@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -12,8 +13,7 @@ namespace GeoLocAPI_DAL.Migrations
                 name: "GeoLocations",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     HostAddress = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ContinentCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ContinentName = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -34,8 +34,7 @@ namespace GeoLocAPI_DAL.Migrations
                 name: "LoginModels",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Username = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -47,17 +46,17 @@ namespace GeoLocAPI_DAL.Migrations
             migrationBuilder.InsertData(
                 table: "GeoLocations",
                 columns: new[] { "Id", "ContinentCode", "ContinentName", "CountryCode", "CountryName", "HostAddress", "Latitude", "Longitude", "RegionCode", "RegionName", "Zip" },
-                values: new object[] { 1, null, null, "No code", "No name", "127.0.0.1", null, null, null, null, null });
+                values: new object[] { new Guid("65ebc216-74b4-4e2a-8527-d1f870eea3e4"), null, null, "No code", "No name", "127.0.0.1", null, null, null, null, null });
 
             migrationBuilder.InsertData(
                 table: "LoginModels",
                 columns: new[] { "Id", "Password", "Username" },
-                values: new object[] { 1, "$2b$10$Xr3wOLK7JECj0xeWzXyMluwhhXDpZicMOdBGHnHygQsVu5OxrKRHy", "admin" });
+                values: new object[] { new Guid("50e66a5f-61a6-457d-9cba-b9d3e5430bd3"), "$2b$10$bDz8iRZjG3zfJdi2nBezBe1UKYIuBbb/uRCUnH67mRAujtDR4LO0q", "user1" });
 
             migrationBuilder.InsertData(
                 table: "LoginModels",
                 columns: new[] { "Id", "Password", "Username" },
-                values: new object[] { 2, "$2b$10$TFmhQK92JsFXrMLgpRI32.z4.c8H/n1YXMGru.1dwmQ/0ZQ2fhFUa", "user1" });
+                values: new object[] { new Guid("e271c897-cf27-4e2e-b80d-69cce9d79e45"), "$2b$10$WibErh/bDXtrdWxh/OkjpuJpE6JYtuMxUiEexcycimIz9fgQV5jTy", "admin" });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

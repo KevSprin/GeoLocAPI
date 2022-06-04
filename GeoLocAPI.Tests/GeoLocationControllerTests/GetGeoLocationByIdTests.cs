@@ -4,6 +4,8 @@ using GeoLocAPI_Domain.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using NUnit.Framework;
+using System;
+using System.Net;
 
 namespace GeoLocAPI.Tests.GeoLocationControllerTests
 {
@@ -12,7 +14,7 @@ namespace GeoLocAPI.Tests.GeoLocationControllerTests
         [Test]
         public void ShouldReturnOkResult()
         {
-            var id = 1;
+            var id = new Guid();
             var hostAddress = "127.0.0.1";
             var expectedResultGeoLocationData = new GeoLocationDataDto
             {

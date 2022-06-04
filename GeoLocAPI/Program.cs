@@ -62,6 +62,7 @@ builder.Services.AddSwaggerGen(option =>
         }
     });
     option.SchemaFilter<GeoLocationDataSchemaFilter>();
+    option.EnableAnnotations();
 });
 
 builder.Services.AddScoped<IAuthenticationRepository, AuthenticationRepository>();

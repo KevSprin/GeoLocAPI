@@ -8,12 +8,12 @@ namespace GeoLocAPI_DAL.Interfaces
 
         GeoLocationData? Get(string hostAddress);
 
-        GeoLocationData? GetById(int id);
+        GeoLocationData? GetById(Guid id);
 
         IQueryable<GeoLocationData> GetAll();
 
         Task Delete(string hostAddress);
 
-        Task DeleteById(int id);
+        Task DeleteById(Guid id);
     }
 }

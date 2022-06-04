@@ -4,7 +4,7 @@ namespace GeoLocAPI_Domain.Models
 {
     public class GeoLocationData
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         [JsonProperty("ip")]
         public string? HostAddress { get; set; }

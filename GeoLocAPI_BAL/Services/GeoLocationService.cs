@@ -43,7 +43,7 @@ namespace GeoLocAPI_BAL.Services
             }
         }
 
-        public async Task DeleteById(int id)
+        public async Task DeleteById(Guid id)
         {
             try
             {
@@ -85,7 +85,7 @@ namespace GeoLocAPI_BAL.Services
             return geoLocationDataDtos;
         }
 
-        public GeoLocationDataDto GetById(int id)
+        public GeoLocationDataDto GetById(Guid id)
         {
             GeoLocationDataDto? foundGeoLocationDataDto;
             try

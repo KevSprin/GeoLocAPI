@@ -1,5 +1,6 @@
 ﻿using GeoLocAPI_DAL.Interfaces;
 using GeoLocAPI_Domain.DTOs;
+using HashidsNet;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
@@ -17,7 +18,7 @@ namespace GeoLocAPI.Controllers
             _geoLocationService = geoLocationService;
         }
 
-        [HttpPost]
+        [HttpPost("[action]")]
         public async Task<IActionResult> AddGeoLocation([FromBody] GeoLocationDataDto geoLocationDataDto)
         {
             try
@@ -31,8 +32,8 @@ namespace GeoLocAPI.Controllers
             return Ok();
         }
 
-        [HttpGet("{hostAddress}")]
-        public IActionResult GetGeoLocation(string hostAddress)
+        [HttpGet("[action]/{hostAddress}")]
+        public IActionResult GetGeoLocation([FromRoute] string hostAddress)
         {
             GeoLocationDataDto? result;
             try
@@ -50,8 +51,8 @@ namespace GeoLocAPI.Controllers
             return Ok(result);
         }
 
-        [HttpGet("{id:int}")]
-        public IActionResult GetGeoLocationById(int id)
+        [HttpGet("[action]/{id:guid}")]
+        public IActionResult GetGeoLocationById([FromRoute] Guid id)
         {
             GeoLocationDataDto? result;
             try
@@ -69,7 +70,7 @@ namespace GeoLocAPI.Controllers
             return Ok(result);
         }
 
-        [HttpGet("getAllGeoLocations")]
+        [HttpGet("[action]")]
         public IActionResult GetAllGeoLocations()
         {
             IQueryable result;
@@ -84,8 +85,8 @@ namespace GeoLocAPI.Controllers
             return Ok(result);
         }
 
-        [HttpDelete("{hostAddress}")]
-        public async Task<IActionResult> DeleteGeoLocation(string hostAddress)
+        [HttpDelete("[action]/{hostAddress}")]
+        public async Task<IActionResult> DeleteGeoLocation([FromRoute]string hostAddress)
         {
             try
             {
@@ -102,8 +103,8 @@ namespace GeoLocAPI.Controllers
             return Ok();
         }
 
-        [HttpDelete("{id:int}")]
-        public async Task<IActionResult> DeleteGeoLocationById(int id)
+        [HttpDelete("[action]/{id:guid}")]
+        public async Task<IActionResult> DeleteGeoLocationById([FromRoute] Guid id)
         {
             try
             {

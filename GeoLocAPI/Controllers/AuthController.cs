@@ -16,7 +16,7 @@ namespace GeoLocAPI.Controllers
             _authenticationService = authenticationService;
         }
 
-        [HttpPost("Login")]
+        [HttpPost("[action]")]
         public IActionResult Login([FromBody] LoginModelDto user)
         {
             AuthenticatedResponse? response;

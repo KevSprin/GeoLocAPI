@@ -47,7 +47,7 @@ namespace GeoLocAPI_DAL.Repositories
             }
         }
 
-        public async Task DeleteById(int id)
+        public async Task DeleteById(Guid id)
         {
             try
             {
@@ -100,7 +100,7 @@ namespace GeoLocAPI_DAL.Repositories
             return result;
         }
 
-        public GeoLocationData? GetById(int id)
+        public GeoLocationData? GetById(Guid id)
         {
             GeoLocationData? result;
             try

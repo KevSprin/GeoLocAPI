@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GeoLocAPI_DAL.Migrations
 {
     [DbContext(typeof(GeoLocDbContext))]
-    [Migration("20220528200617_InitialCreate")]
+    [Migration("20220604202452_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,13 +24,11 @@ namespace GeoLocAPI_DAL.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("GeoLocAPI_DAL.Models.GeoLocationData", b =>
+            modelBuilder.Entity("GeoLocAPI_Domain.Models.GeoLocationData", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("ContinentCode")
                         .HasColumnType("nvarchar(max)");
@@ -69,20 +67,18 @@ namespace GeoLocAPI_DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 1,
+                            Id = new Guid("65ebc216-74b4-4e2a-8527-d1f870eea3e4"),
                             CountryCode = "No code",
                             CountryName = "No name",
                             HostAddress = "127.0.0.1"
                         });
                 });
 
-            modelBuilder.Entity("GeoLocAPI_DAL.Models.LoginModel", b =>
+            modelBuilder.Entity("GeoLocAPI_Domain.Models.LoginModel", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
@@ -97,14 +93,14 @@ namespace GeoLocAPI_DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 1,
-                            Password = "$2b$10$Xr3wOLK7JECj0xeWzXyMluwhhXDpZicMOdBGHnHygQsVu5OxrKRHy",
+                            Id = new Guid("e271c897-cf27-4e2e-b80d-69cce9d79e45"),
+                            Password = "$2b$10$WibErh/bDXtrdWxh/OkjpuJpE6JYtuMxUiEexcycimIz9fgQV5jTy",
                             Username = "admin"
                         },
                         new
                         {
-                            Id = 2,
-                            Password = "$2b$10$TFmhQK92JsFXrMLgpRI32.z4.c8H/n1YXMGru.1dwmQ/0ZQ2fhFUa",
+                            Id = new Guid("50e66a5f-61a6-457d-9cba-b9d3e5430bd3"),
+                            Password = "$2b$10$bDz8iRZjG3zfJdi2nBezBe1UKYIuBbb/uRCUnH67mRAujtDR4LO0q",
                             Username = "user1"
                         });
                 });
