@@ -23,11 +23,11 @@ namespace GeoLocAPI.Tests.GeoLocationControllerTests
 
             var response = await controller.AddGeoLocation(geoLocationDataDto);
 
-            Assert.IsInstanceOf(typeof(OkResult), response);
+            Assert.IsInstanceOf<OkResult>(response);
         }
 
         [Test]
-        public async Task ShouldReturnBadRequestResultDueToException()
+        public async Task ShouldResultIn500()
         {
             var geoLocationDataDto = new GeoLocationDataDto() { HostAddress = "127.0.0.1" };
             var exception = new Exception("Something went wrong");
@@ -37,7 +37,7 @@ namespace GeoLocAPI.Tests.GeoLocationControllerTests
 
             var response = await controller.AddGeoLocation(geoLocationDataDto);
 
-            Assert.IsInstanceOf(typeof(ObjectResult), response);
+            Assert.IsInstanceOf<ObjectResult>(response);
             var problemDetails  = (ObjectResult)response;
             Assert.AreEqual((int)HttpStatusCode.InternalServerError, problemDetails.StatusCode);
             Assert.AreEqual(exception.Message, problemDetails.Value);

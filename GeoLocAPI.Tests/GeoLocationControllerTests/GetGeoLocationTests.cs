@@ -25,14 +25,13 @@ namespace GeoLocAPI.Tests.GeoLocationControllerTests
 
             var response = controller.GetGeoLocation(hostAddress);
 
-            Assert.IsInstanceOf(typeof(OkObjectResult), response);
+            Assert.IsInstanceOf<OkObjectResult>(response);
             var result = (OkObjectResult)response;
-            Assert.IsNotNull(result);
             Assert.AreEqual(expectedResultGeoLocationData, result.Value);
         }
 
         [Test]
-        public void ShouldResultInErrorDueToException()
+        public void ShouldResultIn500()
         {
             var exception = new Exception("Something went wrong");
             var hostAddress = "127.0.0.1";
@@ -46,10 +45,31 @@ namespace GeoLocAPI.Tests.GeoLocationControllerTests
 
             var response = controller.GetGeoLocation(hostAddress);
 
-            Assert.IsInstanceOf(typeof(ObjectResult), response);
-            var problemDetails = (ObjectResult)response;
-            Assert.AreEqual((int)HttpStatusCode.InternalServerError, problemDetails.StatusCode);
-            Assert.AreEqual(exception.Message, problemDetails.Value);
+            Assert.IsInstanceOf<ObjectResult>(response);
+            var result = (ObjectResult)response;
+            Assert.AreEqual((int)HttpStatusCode.InternalServerError, result.StatusCode);
+            Assert.AreEqual(exception.Message, result.Value);
+        }
+
+        [Test]
+        public void ShouldResultInNotFound()
+        {
+            var exception = new InvalidOperationException("Couldn't find element in DB");
+            var hostAddress = "127.0.0.1";
+            var expectedResultGeoLocationData = new GeoLocationDataDto
+            {
+                HostAddress = hostAddress
+            };
+            var mockRepo = new Mock<IGeoLocationService>();
+            mockRepo.Setup(x => x.Get(hostAddress)).Throws(exception);
+            var controller = new GeoLocationController(mockRepo.Object);
+
+            var response = controller.GetGeoLocation(hostAddress);
+
+            Assert.IsInstanceOf<NotFoundObjectResult>(response);
+            var result = (NotFoundObjectResult)response;
+            Assert.AreEqual((int)HttpStatusCode.NotFound, result.StatusCode);
+            Assert.AreEqual(exception.Message, result.Value);
         }
     }
 }

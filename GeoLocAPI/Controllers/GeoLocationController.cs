@@ -1,6 +1,5 @@
 ﻿using GeoLocAPI_DAL.Interfaces;
 using GeoLocAPI_Domain.DTOs;
-using HashidsNet;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
@@ -86,7 +85,7 @@ namespace GeoLocAPI.Controllers
         }
 
         [HttpDelete("[action]/{hostAddress}")]
-        public async Task<IActionResult> DeleteGeoLocation([FromRoute]string hostAddress)
+        public async Task<IActionResult> DeleteGeoLocation([FromRoute] string hostAddress)
         {
             try
             {

@@ -2,6 +2,7 @@
 using GeoLocAPI_Domain.DTOs;
 using GeoLocAPI_Domain.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace GeoLocAPI.Controllers
 {
@@ -26,7 +27,7 @@ namespace GeoLocAPI.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
             }
             if (response == null)
             {

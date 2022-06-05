@@ -6,41 +6,35 @@ using Moq;
 using NUnit.Framework;
 using System;
 using System.Net;
+using System.Threading.Tasks;
 
 namespace GeoLocAPI.Tests.GeoLocationControllerTests
 {
-    internal class GetGeoLocationByIdTests
+    internal class DeleteGeoLocationByIdTests
     {
         [Test]
-        public void ShouldReturnOkResult()
+        public async Task ShouldReturnOkResult()
         {
             var id = Guid.NewGuid();
-            var expectedResultGeoLocationData = new GeoLocationDataDto
-            {
-                Id = id,
-                HostAddress = "127.0.0.1"
-            };
             var mockRepo = new Mock<IGeoLocationService>();
-            mockRepo.Setup(x => x.GetById(id)).Returns(expectedResultGeoLocationData);
+            mockRepo.Setup(x => x.DeleteById(id));
             var controller = new GeoLocationController(mockRepo.Object);
 
-            var response = controller.GetGeoLocationById(id);
+            var response = await controller.DeleteGeoLocationById(id);
 
-            Assert.IsInstanceOf<OkObjectResult>(response);
-            var result = (OkObjectResult)response;
-            Assert.AreEqual(expectedResultGeoLocationData, result.Value);
+            Assert.IsInstanceOf<OkResult>(response);
         }
 
         [Test]
-        public void ShouldResultIn500()
+        public async Task ShouldResultIn500()
         {
-            var id = Guid.NewGuid();
             var exception = new Exception("Something went wrong");
+            var id = Guid.NewGuid();
             var mockRepo = new Mock<IGeoLocationService>();
-            mockRepo.Setup(x => x.GetById(id)).Throws(exception);
+            mockRepo.Setup(x => x.DeleteById(id)).Throws(exception);
             var controller = new GeoLocationController(mockRepo.Object);
 
-            var response = controller.GetGeoLocationById(id);
+            var response = await controller.DeleteGeoLocationById(id);
 
             Assert.IsInstanceOf<ObjectResult>(response);
             var result = (ObjectResult)response;
@@ -49,15 +43,15 @@ namespace GeoLocAPI.Tests.GeoLocationControllerTests
         }
 
         [Test]
-        public void ShouldResultInNotFound()
+        public async Task ShouldResultInNotFound()
         {
+            var exception = new InvalidOperationException("Something went wrong");
             var id = Guid.NewGuid();
-            var exception = new InvalidOperationException("Couldn't find element in DB");
             var mockRepo = new Mock<IGeoLocationService>();
-            mockRepo.Setup(x => x.GetById(id)).Throws(exception);
+            mockRepo.Setup(x => x.DeleteById(id)).Throws(exception);
             var controller = new GeoLocationController(mockRepo.Object);
 
-            var response = controller.GetGeoLocationById(id);
+            var response = await controller.DeleteGeoLocationById(id);
 
             Assert.IsInstanceOf<NotFoundObjectResult>(response);
             var result = (NotFoundObjectResult)response;
