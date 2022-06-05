@@ -21,7 +21,8 @@ namespace GeoLocAPI_BAL.Services
             AuthenticatedResponse? authenticatedResponse;
             try
             {
-                authenticatedResponse = _authenticationRepository.Authenticate(_mapper.Map<LoginModel>(login));
+                var x = _mapper.Map<LoginModel>(login);
+                authenticatedResponse = _authenticationRepository.Authenticate(x);
             }
             catch
             {

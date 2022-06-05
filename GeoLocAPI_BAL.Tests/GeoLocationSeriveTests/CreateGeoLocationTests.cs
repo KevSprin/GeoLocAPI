@@ -2,7 +2,7 @@
 
 namespace GeoLocAPI_BAL.Tests
 {
-    internal class GeoLocationServiceTests
+    internal class CreateGeoLocationTests
     {
         [SetUp]
         public void Setup()

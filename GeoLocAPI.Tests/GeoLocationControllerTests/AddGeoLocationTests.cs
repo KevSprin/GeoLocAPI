@@ -1,7 +1,6 @@
 ﻿using GeoLocAPI.Controllers;
 using GeoLocAPI_DAL.Interfaces;
 using GeoLocAPI_Domain.DTOs;
-using GeoLocAPI_Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using NUnit.Framework;

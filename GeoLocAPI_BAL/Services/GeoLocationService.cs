@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using GeoLocAPI_DAL.Interfaces;
 using GeoLocAPI_Domain.DTOs;
-using GeoLocAPI_Domain.Models;
 
 namespace GeoLocAPI_BAL.Services
 {
