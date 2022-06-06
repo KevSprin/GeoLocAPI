@@ -32,40 +32,34 @@ namespace GeoLocAPI_BAL.Tests.GeoLocationFetcherServiceTests
         [Test]
         public async Task ShouldSuccessfullyReturnGeoLocationData()
         {
-            using (var httpTest = new HttpTest())
-            {
-                httpTest.RespondWithJson(geoLocationData);
-                var service = new GeoLocationFetcherService(mockConfiguration.Object);
+            using var httpTest = new HttpTest();
+            httpTest.RespondWithJson(geoLocationData);
+            var service = new GeoLocationFetcherService(mockConfiguration.Object);
 
-                var result = await service.GetGeoLocationData(geoLocationData);
+            var result = await service.GetGeoLocationData(geoLocationData);
 
-                Assert.IsInstanceOf<GeoLocationData>(result);
-                httpTest.ShouldHaveCalled(apiUrl + hostAddress).WithQueryParam("access_key", apiKey);
-            }
+            Assert.IsInstanceOf<GeoLocationData>(result);
+            httpTest.ShouldHaveCalled(apiUrl + hostAddress).WithQueryParam("access_key", apiKey);
         }
 
         [Test]
         public void ShouldThrowException()
         {
-            using (var httpTest = new HttpTest())
-            {
-                httpTest.SimulateException(new Exception());
-                var service = new GeoLocationFetcherService(mockConfiguration.Object);
+            using var httpTest = new HttpTest();
+            httpTest.SimulateException(new Exception());
+            var service = new GeoLocationFetcherService(mockConfiguration.Object);
 
-                Assert.ThrowsAsync<Exception>(async () => await service.GetGeoLocationData(geoLocationData));
-            }
+            Assert.ThrowsAsync<Exception>(async () => await service.GetGeoLocationData(geoLocationData));
         }
 
         [Test]
         public void ShouldThrowExceptionWhenResultIsNull()
         {
-            using (var httpTest = new HttpTest())
-            {
-                httpTest.RespondWithJson(null);
-                var service = new GeoLocationFetcherService(mockConfiguration.Object);
+            using var httpTest = new HttpTest();
+            httpTest.RespondWithJson(null);
+            var service = new GeoLocationFetcherService(mockConfiguration.Object);
 
-                Assert.ThrowsAsync<Exception>(async () => await service.GetGeoLocationData(geoLocationData));
-            }
+            Assert.ThrowsAsync<Exception>(async () => await service.GetGeoLocationData(geoLocationData));
         }
     }
 }
