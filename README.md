@@ -15,4 +15,4 @@ Technologies used:
 - NUnit 3.13.2
 - Automapper 11.0.0
 - Microsoft SQL Server 2019 (Docker Image)
-- Docker with Linux Container
+- Docker with Linux Container with Docker Compose
