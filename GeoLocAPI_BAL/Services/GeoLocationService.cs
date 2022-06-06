@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using GeoLocAPI_DAL.Interfaces;
 using GeoLocAPI_Domain.DTOs;
+using GeoLocAPI_Domain.Models;
 
 namespace GeoLocAPI_BAL.Services
 {
@@ -21,7 +22,7 @@ namespace GeoLocAPI_BAL.Services
         {
             try
             {
-                var filledGeoLocationData = await _client.GetGeoLocationData(geoLocationDataDto);
+                var filledGeoLocationData = await _client.GetGeoLocationData(_mapper.Map<GeoLocationData>(geoLocationDataDto));
                 await _geoLocationRepository.Create(filledGeoLocationData);
             }
             catch

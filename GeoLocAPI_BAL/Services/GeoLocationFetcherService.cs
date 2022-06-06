@@ -2,7 +2,6 @@
 using Flurl.Http;
 using Microsoft.Extensions.Configuration;
 using GeoLocAPI_DAL.Interfaces;
-using GeoLocAPI_Domain.DTOs;
 using GeoLocAPI_Domain.Models;
 
 namespace GeoLocAPI_BAL.Services
@@ -16,17 +15,25 @@ namespace GeoLocAPI_BAL.Services
             _configuration = configuration;
         }
 
-        public async Task<GeoLocationData> GetGeoLocationData(GeoLocationDataDto geoLocationDataDto)
+        public async Task<GeoLocationData> GetGeoLocationData(GeoLocationData geoLocationData)
         {
-            var geoLocationData = await _configuration["ApiUrl"].AppendPathSegment(geoLocationDataDto.HostAddress)
-                .SetQueryParam("access_key", _configuration["ApiKey"])
-                .GetJsonAsync<GeoLocationData>();
-            if (geoLocationData.HostAddress == null)
+            GeoLocationData? processedGeoLocationData;
+            try
+            {
+                processedGeoLocationData = await _configuration["ApiUrl"].AppendPathSegment(geoLocationData.HostAddress)
+                    .SetQueryParam("access_key", _configuration["ApiKey"])
+                    .GetJsonAsync<GeoLocationData>();
+            }
+            catch
+            {
+                throw new Exception("Failed to send a request for geo location data. Check your internet connection or contact your administrator!");
+            }
+            if (processedGeoLocationData == null)
             {
                 throw new Exception("Couldn't find geolocation data. Check if the address you provided is valid!");
             }
-            geoLocationData.HostAddress = geoLocationDataDto.HostAddress;
-            return geoLocationData;
+            processedGeoLocationData.HostAddress = geoLocationData.HostAddress;
+            return processedGeoLocationData;
         }
     }
 }

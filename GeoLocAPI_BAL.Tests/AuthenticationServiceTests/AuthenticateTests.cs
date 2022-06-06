@@ -42,9 +42,8 @@ namespace GeoLocAPI_BAL.Tests.AuthenticationServiceTests
         [Test]
         public void ShouldThrowException()
         {
-            var exception = new Exception();
             var mockRepo = new Mock<IAuthenticationRepository>();
-            mockRepo.Setup(x => x.Authenticate(It.IsAny<LoginModel>())).Throws(exception);
+            mockRepo.Setup(x => x.Authenticate(It.IsAny<LoginModel>())).Throws<Exception>();
             var service = new AuthenticationService(mockRepo.Object, mapper);
 
             Assert.Throws<Exception>(() => service.Authenticate(loginModelDto));

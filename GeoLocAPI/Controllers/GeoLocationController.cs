@@ -1,5 +1,6 @@
 ﻿using GeoLocAPI_DAL.Interfaces;
 using GeoLocAPI_Domain.DTOs;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
@@ -7,7 +8,7 @@ namespace GeoLocAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class GeoLocationController : Controller
     {
         private readonly IGeoLocationService _geoLocationService;
